@@ -1,11 +1,16 @@
 package com.aashish.todo_app_basic.todo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
+@Entity
 public class Todo {
     public Todo(int id, String username, String description, LocalDate target, boolean done) {
+        super();
         this.id = id;
         this.username = username;
         this.description = description;
@@ -13,12 +18,18 @@ public class Todo {
         this.done = done;
     }
 
+    @Id
+    @GeneratedValue
     private int id;
     private String username;
     @Size(min = 5, message = "Enter atleast 5 characters.")
     private String description;
     private LocalDate target;
     private boolean done;
+
+    public Todo() {
+
+    }
 
     public int getId() {
         return id;
